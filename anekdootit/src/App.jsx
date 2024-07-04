@@ -15,8 +15,7 @@ const App = () => {
     ]
    
   const [selected, setSelected] = useState(0)
-  const [vinner, setVinner] = useState([Array(8).fill(0)])
-
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
 
 
   const raffleAnecdote= () => {
@@ -29,78 +28,35 @@ const App = () => {
   }
 
   const voteAnecdote = () => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
+}
 
-    const points = [0,1,2,3,4,5,6,7]
-   
-    const copy = [...points]
+const mostVotes = () => {
+    const maxVotes = Math.max(...votes)
+    const index = votes.indexOf(maxVotes)
+    return anecdotes[index]
+}
 
-    if(selected == 0) {
+const handleChange = () => {
 
-      copy[0]+=1
+  event.preventDefault()
 
-    console.log(copy[0])
+}
 
-    } else if (selected == 1) {
-
-      copy[1]+=1
-
-    console.log(copy[1])
-
-    } else if(selected == 2) {
-
-      copy[2]+=1
-
-    console.log(copy[2])
-
-    } else if(selected == 3) {
-
-      copy[3]+=1
-
-    console.log(copy[3])
-
-    } else if(selected == 4) {
-
-      copy[4]+=1
-
-    console.log(copy[4])
-
-    } else if(selected == 5) {
-
-      copy[5]+=1
-
-    console.log(copy[5])
-
-    } else if(selected == 6) {
-
-      copy[6]+=1
-
-    console.log(copy[6])
-
-    } else if(selected == 7) {
-
-      copy[7]+=1
-
-    console.log(copy[7])
-
-    }
-
-  }
-
-  const handleChange = () => {
-
-    event.preventDefault();
-   
-    
-  }
-  
 
   return (
     <>
       <form onSubmit={handleChange}>
-      <h1>ANEKDOOTIT</h1>
-      {anecdotes[selected]} <br /> <br />
+      <h1>Anecdote of the day</h1>
+      {anecdotes[selected]} 
+      <br /> has {votes[selected]} votes<br /><br />
       <button onClick={voteAnecdote}>Vote</button>
       <button onClick={raffleAnecdote}>next anecdote</button> 
+      <h1>Anecdote with most votes</h1>
+      <div>{mostVotes()}</div>
+      <div>has {Math.max(...votes)}</div>
     </form>
     </>
   )

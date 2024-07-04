@@ -97,12 +97,18 @@ const App = () => {
 
 return (
 
-    <div>
+    <table>
+      <tr>
       <h1>give feedback</h1>
+      </tr>
+      <tr>   
       <Button handleClick={()=>handleGood()} text="good" />
-      <Button handleClick={() => handleNeutral()} text="neutral" />
+      <Button handleClick={() => handleNeutral()} text="neutral" /> 
       <Button handleClick={() => handleBad()} text="bad" />
+      </tr>
+      <tr>
       <h1>statistics</h1>
+      </tr>
       <Statistics good={good} 
       neutral = {neutral} 
       bad = {bad} 
@@ -110,7 +116,7 @@ return (
       avarage = {avarage} 
       positive = {positive}
       />  
-    </div>
+    </table>
   )
 }
 

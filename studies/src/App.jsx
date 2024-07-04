@@ -34,8 +34,8 @@ const App = () => {
 
     return(
       <div>
-      {course.parts[0].name}  
-      {course.parts[1].name}
+      {course.parts[0].name}  <br />
+      {course.parts[1].name}  <br />
       {course.parts[2].name}
       </div>
     )
